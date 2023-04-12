@@ -1,5 +1,0 @@
-export { default as Home } from "./Home"
-export { default as Pools } from "./Pools"
-export { default as Swap } from "./Swap"
-export { default as Airdrop } from "./Airdrop"
-export { default as Rewards } from "./Rewards"
