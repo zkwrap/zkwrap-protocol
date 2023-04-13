@@ -36,7 +36,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   );
 
   // read function
-  console.log(`The current owner is ${await contract.getFaucetBalance()}`);
+  console.log(`The current balance is ${await contract.getFaucetBalance()}`);
 
   // call function
  // const newOwner = "Sample Data";
