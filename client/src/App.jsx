@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 
 import { Routes, Route } from 'react-router-dom'
@@ -9,7 +8,6 @@ function App() {
 
   return (
     <div className="App">
-       {/* <Header /> */}
         <main>
           <Routes>
               <Route path="/" element={<Home />} />
@@ -21,7 +19,6 @@ function App() {
               </Route>
           </Routes>
         </main>
-       {/* <Footer /> */}
     </div>
   )
 }
