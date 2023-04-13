@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/zkwrap/zkwrap-protocol",
-  "authors": "Noddy,Zetty", 
+  "authors": "Noddy(https://github.com/bobseal),Zetty(https://github.com/muhammadraazy)", 
   "license": "Unlicensed",
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "^0.6.1",

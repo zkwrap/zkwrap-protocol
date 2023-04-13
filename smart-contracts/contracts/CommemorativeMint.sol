@@ -4,7 +4,7 @@
 
 pragma solidity >= 0.8.0;
 
-//will act as a faucet too
+//will act as faucet and Mint
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
@@ -20,7 +20,9 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     string public constant Name = "ZK Wrap Commemorative Edition";
     string public constant Symbol = "ZK-Wrap";
     string public tokenURI;
+    uint256 tokenID;
 
+    uint256 mintLimit;
     address private DepositHandler;
 
     mapping (address=>uint256) private balancesFaucet;
@@ -34,9 +36,11 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     event FormFilled(address indexed user);
     event CollectedFromFaucet(address indexed user);
 
-    constructor (address _owner , string memory _uri){
+    constructor (address _owner , string memory _uri , uint256 mintLIMIT){
         DepositHandler = _owner;
         tokenURI = _uri;
+        tokenID = 0;
+        mintLimit = mintLIMIT;
     }
     receive() external payable {}
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
@@ -132,8 +136,8 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     }
     //mint
     function _mint(address to, uint256 tokenId) internal virtual { 
+        require(tokenId < mintLimit,"Max Mints Reached");
         require(to != address(0), "ERC721: mint to the zero address");
-        require(hasMinted[msg.sender] == false);
         require(!_exists(tokenId), "ERC721: token already minted");
         _beforeTokenTransfer(address(0), to, tokenId, 1);
         require(!_exists(tokenId), "ERC721: token already minted");
@@ -203,19 +207,34 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     }
 
     function claimGas() public { // lets users claim gas to mint the nft
-        uint256 amount = 10000000000000000;
+        uint256 amount = 5000000000000000;
         require(hasClaimedFaucet[msg.sender] == false, "Already Claimed Gas");
+        require(hasMinted[msg.sender] == false,"Already Minted, Gas Access Denied");
         require(balancesFaucet[DepositHandler] < amount ,"Faucet Running Dry!! If You Wish to Donate to Faucet Please Contact the Team");
         (bool sent, ) = msg.sender.call{value: amount}("");
         require(sent, "Failed to send Ether");
         balancesFaucet[DepositHandler] = balancesFaucet[DepositHandler].sub(amount);
         hasClaimedFaucet[msg.sender] = true;
     } 
-     function getFaucetBalance() external view returns (uint256) {
+    function getFaucetBalance() external view returns (uint256) {
         return balancesFaucet[DepositHandler];
     }
     function changeDepositor(address newDepositor) external {
         require(msg.sender == DepositHandler,"No Permission");
         DepositHandler = newDepositor;
+    }
+
+    //Mint for Users
+
+    function ClaimNFT() public returns(bool){
+        require(hasMinted[msg.sender] == false,"only 1 nft per wallet allowed");
+        _mint(msg.sender,tokenID);
+        tokenID++;
+        return true;
+    }
+    function extendMintLimit(uint256 newLimit) external returns(bool){
+        require(msg.sender == DepositHandler,"Depositor Has the Permission");
+        mintLimit = newLimit;
+        return true;
     }
 }
