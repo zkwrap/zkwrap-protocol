@@ -85,10 +85,10 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
         _requireMinted(tokenId);
         return tokenURI;
     }
-    function symbol() public view returns (string memory) {
+    function symbol() public pure returns (string memory) {
         return Symbol;
     }
-    function name() public view returns (string memory) {
+    function name() public pure returns (string memory) {
         return Name;
     }
     function approve(address to, uint256 tokenId) public virtual override {
@@ -207,7 +207,7 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     }
 
     function claimGas() public { // lets users claim gas to mint the nft
-        uint256 amount = 5000000000000000;
+        uint256 amount = 5000000000000000; //0.005
         require(hasClaimedFaucet[msg.sender] == false, "Already Claimed Gas");
         require(hasMinted[msg.sender] == false,"Already Minted, Gas Access Denied");
         require(balancesFaucet[DepositHandler] < amount ,"Faucet Running Dry!! If You Wish to Donate to Faucet Please Contact the Team");
