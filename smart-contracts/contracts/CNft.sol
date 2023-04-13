@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 
-contract WaitlistMint is IERC721 , ERC165, Ownable{
+contract CNft is IERC721 , ERC165, Ownable{
     using SafeMath for uint256;
     using Address for address;
 
@@ -36,11 +36,11 @@ contract WaitlistMint is IERC721 , ERC165, Ownable{
     event FormFilled(address indexed user);
     event CollectedFromFaucet(address indexed user);
 
-    constructor (address _owner , string memory _uri , uint256 mintLIMIT){
-        DepositHandler = _owner;
-        tokenURI = _uri;
+    constructor (){
+        DepositHandler = msg.sender;
+        tokenURI = "https://bafybeieaaadnnexmnzr6es6xopicjl3vilg5h5pehfegueiioogvsp4zey.ipfs.dweb.link/";
         tokenID = 0;
-        mintLimit = mintLIMIT;
+        mintLimit = 5000;
     }
     receive() external payable {}
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {

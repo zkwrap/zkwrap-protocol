@@ -21,8 +21,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test hardhat test --network zkSyncTestnet",
-    "deploy": "yarn hardhat deploy-zksync --script deploy.ts",
-    "changeOwner": "yarn hardhat deploy-zksync --script useContract.ts"
+    "deploy": "npx hardhat deploy-zksync --script deploy.ts",
+    "changeOwner": "npx hardhat deploy-zksync --script useContract.ts"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.2",

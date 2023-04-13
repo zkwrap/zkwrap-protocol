@@ -22,9 +22,13 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   // Create deployer object and load the artifact of the contract you want to deploy.
   const deployer = new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("TYPE CONTRACT NAME");
+  const artifact = await deployer.loadArtifact("CNft");
 
   //calculate fee
+  //constructor 
+  //const address = "0x3aF9929A6f53a729E62ED57CF1187Ea99c2Ba08B";
+  //const uri = "https://bafybeieaaadnnexmnzr6es6xopicjl3vilg5h5pehfegueiioogvsp4zey.ipfs.dweb.link/"
+  //const mintLimit = "4999";
   const deploymentFee = await deployer.estimateDeployFee(artifact, []);
   
   // `greeting` is an argument for contract constructor.
