@@ -6,9 +6,9 @@ Try running some of the following tasks:
 
 ```shell
 npx hardhat compile
-REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat deploy-zksync --script deploy.ts
+npx hardhat deploy-zksync --script deploy.ts --network mainnet {deploy on mainnet}
 ```
 
 contract on testnet =  0x451d1aF630eD72C6506c969e471c3d81F5932F6B

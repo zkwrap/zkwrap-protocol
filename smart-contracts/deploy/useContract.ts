@@ -36,14 +36,14 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   );
 
   // read function
-  console.log(`The current balance is ${await contract.getFaucetBalance()}`);
+  //console.log(`The current balance is ${await contract.getFaucetBalance()}`);
 
   // call function
  // const newOwner = "Sample Data";
-  //const tx = await contract.ClaimNFT();
+  const tx = await contract.ClaimNFT();
 
-  //console.log(`Transaction to change the message is ${tx.hash}`);
-  //await tx.wait();
+  console.log(`Transaction to change the message is ${tx.hash}`);
+  await tx.wait();
 
  // console.log(`The new owner is now ${await contract.getFunction()}`);
 }

@@ -207,7 +207,7 @@ contract CNft is IERC721 , ERC165, Ownable{
     }
 
     function claimGas() public { // lets users claim gas to mint the nft
-        uint256 amount = 5000000000000000; //0.005
+        uint256 amount = 2000000000000000; //0.002
         require(hasClaimedFaucet[msg.sender] == false, "Already Claimed Gas");
         require(hasMinted[msg.sender] == false,"Already Minted, Gas Access Denied");
         require(balancesFaucet[DepositHandler] < amount ,"Faucet Running Dry!! If You Wish to Donate to Faucet Please Contact the Team");
