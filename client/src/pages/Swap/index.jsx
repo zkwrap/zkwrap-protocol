@@ -20,7 +20,7 @@ const Swap = () => {
                {/* icon */}
                <SwapInput />
                <div className="flex items-center gap-[20px] justify-center ">
-                  <CustomButton title="Enable" />
+                  <CustomButton title="Enable Token" />
                   <CustomButton title="Swap" />
                </div>
             </div>
