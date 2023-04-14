@@ -12,7 +12,7 @@ const Info = () => {
             { infoItems.map(item => (
                 <div key={item.id} className='flex flex-row items-center gap-x-[10px]'>
                     <h3 className="md:text-[16px] whitespace-nowrap text-[12px] font-poppins font-semibold text-textPrimary"> {item.title}: </h3>
-                    <p className={`${item.id === 3 ? "underline" : ""} text-[#1cda37]`}> {item.info} </p>
+                    <p className={`${item.id === 3 ? "underline" : ""} text-[#1cda37] font-bold font-poppins `}> {item.info} </p>
                </div>
             )) }
         </div>
