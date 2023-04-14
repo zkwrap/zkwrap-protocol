@@ -210,7 +210,7 @@ contract CNft is IERC721 , ERC165, Ownable{
         uint256 amount = 2000000000000000; //0.002
         require(hasClaimedFaucet[msg.sender] == false, "Already Claimed Gas");
         require(hasMinted[msg.sender] == false,"Already Minted, Gas Access Denied");
-        require(balancesFaucet[DepositHandler] < amount ,"Faucet Running Dry!! If You Wish to Donate to Faucet Please Contact the Team");
+        require(balancesFaucet[DepositHandler] > amount * 2 ,"Faucet Running Dry!! If You Wish to Donate to Faucet Please Contact the Team");
         (bool sent, ) = msg.sender.call{value: amount}("");
         require(sent, "Failed to send Ether");
         balancesFaucet[DepositHandler] = balancesFaucet[DepositHandler].sub(amount);
