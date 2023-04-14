@@ -5,9 +5,12 @@ This project demonstrates a basic Hardhat use case. It comes with a sample contr
 Try running some of the following tasks:
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
+npx hardhat compile
 npx hardhat node
-npx hardhat run scripts/deploy.js
+npx hardhat deploy-zksync --script deploy.ts
+npx hardhat deploy-zksync --script deploy.ts --network mainnet {deploy on mainnet}
 ```
+
+contract on testnet =  0x451d1aF630eD72C6506c969e471c3d81F5932F6B
+
+prev tx test = 0x0a642cdc3b5562b816c1d556920fac50f0eb56f4f95634f8cee77cc2d83ced25
