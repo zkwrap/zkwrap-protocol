@@ -6,7 +6,6 @@
 pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 
 contract WRAPTOKEN is IERC20 {
     using SafeMath for uint256;
