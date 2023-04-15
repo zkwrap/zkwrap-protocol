@@ -6,7 +6,7 @@
 pragma solidity ^0.8.17;
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
+import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 
 contract WRAPTOKEN is IERC20 {
     using SafeMath for uint256;
@@ -14,16 +14,16 @@ contract WRAPTOKEN is IERC20 {
     string public symbol ="RAP";
     uint256 public constant decimals = 18;
     uint256 public fee1;
-    uint256 public maxTx;
     uint256 public fee2;
     uint256 public fee3;
-    address public address1;
-    address public address2;
-    address public address3;
-    address public Owner;
-    uint256 public maxHoldLimit; // max limit per wallet to hold
+    uint256 private maxTx;
+    address private address1;
+    address private address2;
+    address private address3;
+    address private Owner;
+    uint256 private maxHoldLimit; // max limit per wallet to hold
     uint256 public _totalSupply;
-    bool public lockedSwap;
+    bool private lockedSwap;
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
     mapping(address => bool) private _isExcludedFromFee;
@@ -92,7 +92,7 @@ contract WRAPTOKEN is IERC20 {
         _transfer(msg.sender, recipient, amount);
         return true;
     }
-    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) public returns (bool) {
         uint256 currentAllowance = _allowances[sender][msg.sender];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
         _allowances[sender][msg.sender] = currentAllowance.sub(amount);
