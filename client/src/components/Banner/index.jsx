@@ -1,4 +1,3 @@
-import { useDarkTheme } from "../../Context"
 
 const Banner = ({title, desc, Icon}) => {
 

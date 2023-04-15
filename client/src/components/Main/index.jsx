@@ -3,10 +3,10 @@ import Footer from "../Footer"
 import { Outlet } from "react-router-dom"
 import Info from "../Info"
 
-import { useDarkTheme } from "../../Context"
+import { useZkContext } from "../../Context"
 
 const Main = () => {
-  const { darkTheme } = useDarkTheme()
+  const { darkTheme } = useZkContext()
 
   return (
     <div className={`bg-[#d0def1] h-[max-content] ${darkTheme ? "dark" : "light" }`}>

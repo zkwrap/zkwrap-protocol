@@ -1,10 +1,10 @@
 import { ImSun } from "react-icons/im"
 import { BsMoonStarsFill } from "react-icons/bs"
 
-import { useDarkTheme } from '../../Context'
+import { useZkContext } from '../../Context'
 
 const Theme = () => {
-     const { darkTheme, changeTheme } = useDarkTheme()
+     const { darkTheme, changeTheme } = useZkContext()
 
   return (
     <div className={`w-[70px] ${ darkTheme ? "bg-primary" : "bg-secondary" } flex items-center ${darkTheme ? "justify-start" : "justify-end" } transition-all duration-500 rounded-[50px] p-[10px]`}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import {FaExternalLinkAlt } from "react-icons/fa"
 import { Link } from 'react-router-dom'
 import { socialMedias } from '../../constants'
@@ -6,10 +6,22 @@ import Info from '../Info'
 import CustomButton from '../CustomButton'
 
 import { ConnectWallet, useAddress  } from "@thirdweb-dev/react";
-
+import { useZkContext } from "../../Context"
 
 const Hero = () => {
       const address = useAddress()
+      const {getContract} = useZkContext()
+      const [claimed, setClaimed] = useState(false)
+
+      const claimingWhitelist = async() => {
+          
+          try {
+            //  await claimNft() 
+             console.log(await getContract())   
+          } catch(err) {
+             console.log(err)
+          }
+      }
 
   return (
     <div className='h-[800px] hero w-full bg-primary'>
@@ -19,7 +31,7 @@ const Hero = () => {
             <div className='flex w-full justify-between mt-[20px] items-center'> 
                 <h3 className='text-textPrimary text-[2.5rem] font-bold font-poppins'> ZKWRAP </h3>
                 <div>
-                    <ConnectWallet btnTitle={`${address ? address : "Connect Wallet"}`} theme="dark" />
+                    <ConnectWallet btnTitle="Connect Wallet" theme="dark" />
                 </div>
              </div>
 
@@ -37,7 +49,7 @@ const Hero = () => {
                     <FaExternalLinkAlt className="text-textPrimary md:text-[16px] text-[14px] font-poppins font-semibold uppercase" />
                     </Link>
 
-                    <CustomButton title="Join Whitelists" styles="md:h-[50px] h-[40px] uppercase font-bold whitespace-nowrap text-[14px] " />
+                    <CustomButton disabled={`${claimed ? true : false}`} clickHandler={claimingWhitelist} title={`${claimed ? "Already Joined" : "Join Whitelists"}`} styles="md:h-[50px] h-[40px] uppercase font-bold whitespace-nowrap text-[14px] " />
               </div>
 
                 <div className='flex flex-row mt-[20px] items-center gap-x-[20px]'>

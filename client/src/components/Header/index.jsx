@@ -1,11 +1,11 @@
 import { navlinks } from "../../constants"
 import { Link } from 'react-router-dom'
-import { useDarkTheme } from '../../Context'
+import { useZkContext } from '../../Context'
 
 import Theme from "../Theme"
 
 const Header = () => {
-    const { darkTheme } = useDarkTheme()
+    const { darkTheme } = useZkContext()
 
   return (
     <div className={` ${darkTheme ? "dark" : "light" } h-[100px] sticky top-0 mb-[30px] w-full`}>

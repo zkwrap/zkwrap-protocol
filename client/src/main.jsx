@@ -6,19 +6,18 @@ import './index.css'
 import { ZkContextProvider } from "./Context"
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { ThirdwebProvider } from "@thirdweb-dev/react";
-import { ChainId } from "@thirdweb-dev/sdk"
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-      <ZkContextProvider>
-          <ThirdwebProvider activeChain={ChainId.Goerli}>
-            <Router>
-              <App />
-            </Router> 
-          </ThirdwebProvider>
-      </ZkContextProvider>
+        <ThirdwebProvider activeChain={ChainId.Goerli}>
+          <ZkContextProvider >
+              <Router>
+                  <App />
+              </Router> 
+          </ZkContextProvider>
+        </ThirdwebProvider>
   </React.StrictMode>,
 )

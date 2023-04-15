@@ -57,3 +57,6 @@ export const poolsData = {
     ]
 
 }
+
+
+export const zkContract = '0x451d1aF630eD72C6506c969e471c3d81F5932F6B'
