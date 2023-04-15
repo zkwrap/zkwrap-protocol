@@ -1,9 +1,10 @@
 import { Provider, Web3Provider } from "zksync-web3";
-import * as ethers from "ethers";
 import * as ContractArtifact from "./contract.json";
 import {connectWallet} from "./helper.js";
 import { useEffect, useState } from "react";
 import React from "react";
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 
 const PRIVATE_KEY = process.env.PRIVATE || "";
 

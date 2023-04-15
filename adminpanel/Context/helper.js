@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 
 export const connectWallet = async()=> {
     try {
