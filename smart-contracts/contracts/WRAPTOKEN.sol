@@ -23,6 +23,7 @@ contract WRAPTOKEN is IERC20 {
     address public Owner;
     uint256 public maxHoldLimit; // max limit per wallet to hold
     uint256 public _totalSupply;
+    bool public lockedSwap;
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
     mapping(address => bool) private _isExcludedFromFee;
@@ -32,6 +33,7 @@ contract WRAPTOKEN is IERC20 {
     event SetFeePercentage(uint256 feePercentage , uint256 timestamp);
     event Rebrand (string name , string symbol , uint256 timestamp);
     event TransferOwnership(address indexed previousOwner , address indexed newOwner , uint256 timestamp);
+    event TransactionStatus(bool TransactionsEnabled , uint256 timestamp);
 
     constructor(string memory _name , string memory _symbol,address _feereceiever1 , address _feereceiever2 , uint256 feea , uint256 feeb, uint256 feec , uint256 maxTxPercent , uint256 supply , uint256 maxWalletLimit) {
         _totalSupply = supply * (10**18);
@@ -48,6 +50,7 @@ contract WRAPTOKEN is IERC20 {
         symbol=_symbol;
         maxHoldLimit = maxWalletLimit;
         Owner = msg.sender;
+        lockedSwap = false;
     }
     function rebrandToken(string memory newname , string memory newsymbol) public returns(bool) {
         require(msg.sender == owner(), "Only the owner can set the Logo");
@@ -85,9 +88,8 @@ contract WRAPTOKEN is IERC20 {
             _transfer(msg.sender, address1, feeAmount1);
             _transfer(msg.sender, address2, feeAmount2);
             _transfer(msg.sender, address3, feeAmount3);
-        } else {
-            _transfer(msg.sender, recipient, amount);
         }
+        _transfer(msg.sender, recipient, amount);
         return true;
     }
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
@@ -110,6 +112,7 @@ contract WRAPTOKEN is IERC20 {
         return true;
     }
     function _transfer(address sender, address recipient, uint256 amount) internal {
+        require(lockedSwap == false ,"Transacitons are temporarily disabled for this token");
         uint256 outAmt= _totalSupply.mul(maxTx).div(100);
         uint256 senderLim = _totalSupply.mul(maxHoldLimit).div(100);
         if (!_excludedFromTxLimit[msg.sender]){
@@ -205,5 +208,20 @@ contract WRAPTOKEN is IERC20 {
     }
     function owner() public view returns (address) {
         return Owner;
+    }
+    function lockSwap() public {
+        require (msg.sender == Owner , "Cant Lock , needs to be owner");
+        require(lockedSwap == false);
+        lockedSwap = true;
+        emit TransactionStatus(false , block.timestamp);
+    }
+    function unlockSwap() public {
+        require (msg.sender == Owner , "Cant Lock , needs to be owner");
+        require(lockedSwap == true);
+        lockedSwap = false;
+        emit TransactionStatus(true , block.timestamp);
+    }
+    function CheckIfSwapLocked() public view returns(bool){
+        return lockedSwap;
     }
 }
