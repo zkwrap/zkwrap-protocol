@@ -208,17 +208,19 @@ contract WRAPTOKEN is IERC20 {
     function owner() public view returns (address) {
         return Owner;
     }
-    function lockSwap() public {
+    function lockSwap() public returns(bool){
         require (msg.sender == Owner , "Cant Lock , needs to be owner");
         require(lockedSwap == false);
         lockedSwap = true;
         emit TransactionStatus(false , block.timestamp);
+        return true;
     }
-    function unlockSwap() public {
+    function unlockSwap() public returns(bool){
         require (msg.sender == Owner , "Cant Lock , needs to be owner");
         require(lockedSwap == true);
         lockedSwap = false;
         emit TransactionStatus(true , block.timestamp);
+        return true;
     }
     function CheckIfSwapLocked() public view returns(bool){
         return lockedSwap;
