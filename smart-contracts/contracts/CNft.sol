@@ -43,6 +43,7 @@ contract CNft is IERC721 , ERC165, Ownable{
         mintLimit = 5000;
     }
     receive() external payable {}
+    
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
         return
             interfaceId == type(IERC721).interfaceId ||

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/zkwrap/zkwrap-protocol",
-  "authors": "Noddy(https://github.com/bobseal),Zetty(https://github.com/muhammadraazy)", 
+  "authors": "Noddy(https://github.com/bobseal),Zetty(https://github.com/muhammadraazy)",
   "license": "Unlicensed",
   "devDependencies": {
     "@matterlabs/hardhat-zksync-deploy": "^0.6.1",
@@ -24,7 +24,7 @@
     "deploy": "npx hardhat deploy-zksync --script deploy.ts"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.8.2",
+    "@openzeppelin/contracts": "^4.8.3",
     "@openzeppelin/contracts-upgradeable": "^4.8.2"
   }
 }
