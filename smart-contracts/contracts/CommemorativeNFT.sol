@@ -1,13 +1,15 @@
 //SPDX-License-Identifier: MIT
 
-//Author : ZK Wrap
+/**
+ * @title ZKWRAP MINT NFT FOR WHITELIST
+ * @author ZKWRAP TEAM ( BOBSEAL & RAAZY )
+ */
 
 pragma solidity >= 0.8.0;
 
-//will act as faucet and Mint
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract CNft is ERC721 {
+contract CommemorativeNFT is ERC721 {
     using SafeMath for uint256;
     using Address for address;
 

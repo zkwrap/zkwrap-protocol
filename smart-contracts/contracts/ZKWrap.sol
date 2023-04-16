@@ -5,12 +5,12 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
 /**
- * @author ZKWRAP
+ * @author ZKWRAP TEAM
  * @dev CONTRIBUTOR : BOBSEAL || RAAZY
  */
 
 
-contract WRAPTOKEN is ERC20 {
+contract ZKWrap is ERC20 {
     // TYPES DEFINITIONS
     using SafeMath for uint256;
 
